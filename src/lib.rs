@@ -57,6 +57,7 @@ impl<'a, T> TrackView<'a, T> {
                 ..Default::default()
             });
         let view_height = ui.available_height();
+        let view_width = ui.available_width();
         ui.horizontal(|ui| {
             let header_size = [header_width, view_height];
             let y_offset = track_area_state.offset.y;
@@ -76,6 +77,7 @@ impl<'a, T> TrackView<'a, T> {
                 .rect_filled(spliter.rect, 0.0, self.style.spliter_color);
             if spliter.dragged() && self.spliter_draggable {
                 header_width += spliter.drag_delta().x;
+                header_width = header_width.clamp(0, view_width);
             }
             track_area_state = egui::ScrollArea::new([true, true])
                 .auto_shrink([false, false])

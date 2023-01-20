@@ -77,7 +77,7 @@ impl<'a, T> TrackView<'a, T> {
                 .rect_filled(spliter.rect, 0.0, self.style.spliter_color);
             if spliter.dragged() && self.spliter_draggable {
                 header_width += spliter.drag_delta().x;
-                header_width = header_width.clamp(0, view_width);
+                header_width = header_width.clamp(0.0, view_width);
             }
             track_area_state = egui::ScrollArea::new([true, true])
                 .auto_shrink([false, false])
